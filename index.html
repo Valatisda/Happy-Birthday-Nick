@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday, Humphrey!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:#090909;
+  --dark:#0d0d0d;
+  --card:#111418;
+  --gold:#f5c518;
+  --gold2:#c9950a;
+  --white:#e8e8e8;
+  --muted:#7a7a8c;
+}
+
+/* BACKGROUND */
+body {
+  background: radial-gradient(circle at top, #0b0f1f, #000);
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero {
+  text-align:center;
+  padding:3rem 1rem;
+}
+
+.hero h1 {
+  font-family:'Bebas Neue', sans-serif;
+  font-size:4rem;
+  color:var(--gold);
+  letter-spacing:2px;
+}
+
+/* MESSAGE */
+.card {
+  max-width:700px;
+  margin:2rem auto;
+  background:var(--card);
+  padding:2rem;
+  border-left:3px solid var(--gold);
+  line-height:1.8;
+}
+
+/* BUTTONS */
+button {
+  margin:10px;
+  padding:14px 24px;
+  border:none;
+  border-radius:8px;
+  background:var(--gold);
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* ===== CAKE ===== */
+.cake-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:40px;
+}
+
+.cake {
+  width:160px;
+  height:90px;
+  background:#ffb6c1;
+  border-radius:10px;
+  position:relative;
+  box-shadow:0 10px 0 #e89aa8;
+}
+
+/* icing */
+.cake::before {
+  content:"";
+  position:absolute;
+  width:100%;
+  height:25px;
+  background:#fff;
+  border-radius:10px 10px 0 0;
+}
+
+/* candles */
+.candle {
+  width:6px;
+  height:30px;
+  background:#ffd700;
+  position:absolute;
+  top:-30px;
+  border-radius:2px;
+}
+
+.candle:nth-child(1){ left:25px;}
+.candle:nth-child(2){ left:50px;}
+.candle:nth-child(3){ left:75px;}
+.candle:nth-child(4){ left:100px;}
+.candle:nth-child(5){ left:125px;}
+
+/* flames */
+.flame {
+  width:8px;
+  height:12px;
+  background:orange;
+  border-radius:50%;
+  position:absolute;
+  top:-12px;
+  left:-1px;
+  animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform:scale(1); opacity:1; }
+  to { transform:scale(1.2); opacity:0.7; }
+}
+
+/* blown effect */
+.blown .flame {
+  opacity:0;
+}
+
+/* BAT SIGNAL GLOW */
+.signal {
+  width:250px;
+  height:250px;
+  margin:20px auto;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,215,0,0.25), transparent 70%);
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.1); }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="signal"></div>
+
+  <h1>HAPPY BIRTHDAY BATMAN 🦇</h1>
+
+  <div class="card">
+
+    Wayne Enterprises Secure Channel Activated…<br><br>
+
+    Gotham City reports a rare event today , not chaos… but celebration.<br><br>
+
+    A hero is being acknowledged for everything he is, and everything he does without asking for recognition.<br><br>
+
+    Thank you for your strength, your humor, your loyalty, and your presence in the lives of those who matter to you.<br><br>
+
+    May this year bring clarity in your path, peace in your mind, and wins that feel earned and deserved.<br><br>
+
+    🖤 Gotham is better with you in it.<br><br>
+
+  </div>
+
+  <!-- VOICE BUTTON -->
+  <button onclick="playVoice()">🎙️ Play Secret Voice Message</button>
+
+  <audio id="voice">
+    <source src="batman-message.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- CAKE -->
+  <div class="cake-container">
+    <div class="cake" id="cake">
+
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+
+    </div>
+
+    <button onclick="blowCandles()">🎂 Blow Candles</button>
+  </div>
+
+</div>
+
+<script>
+
+/* voice */
+function playVoice(){
+  document.getElementById("voice").play();
+}
+
+/* blow candles */
+function blowCandles(){
+  document.getElementById("cake").classList.add("blown");
+}
+
+</script>
+
+</body>
+      </html>
